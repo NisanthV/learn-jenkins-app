@@ -46,6 +46,25 @@ pipeline {
                     '''
             }
         }
+
+        stage('Python'){
+
+            agent{
+
+                docker{
+
+                    image '3.12.11-bookworm'
+                    reuseNode true
+                }
+            }
+
+            steps{
+                sh'''
+                    python3 hai.py
+                '''
+            }
+
+        }
     }
 
     post {
