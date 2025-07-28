@@ -53,7 +53,7 @@ pipeline {
 
                 docker{
 
-                    image '3.12.11-bookworm'
+                    image 'python:3.12.11-bookworm'
                     reuseNode true
                 }
             }
