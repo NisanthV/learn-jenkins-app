@@ -58,36 +58,7 @@ pipeline {
 
         }
 
-        stage('Docker'){
-
-            agent{
-                docker{
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-
-
-            steps{
-
-                withCredentials([UsernamePassword(
-                    credentialsId: "docker_auth", 
-                    passwordVariable: "docker_pass", 
-                    usenameVariable: "docker_user")]
-                    ){
-
-                    sh'''
-                        docker login -u ${env.docker_user} -p ${env.docker_pass}
-
-                        sh docker build -t ${env.docker_user}/learn-jenkin .
-
-                        sh docker push ${env.docker_user}/learn-jenkin:latest
-                    '''
-
-                } 
-
-            }
-        }
+        
     }
 
     post {
