@@ -70,7 +70,11 @@ pipeline {
 
             steps{
 
-                withCredentials([UsernamePassword(credentialsId: "docker_auth", passwordVariable: "docker_pass, usenameVariable: "docker_user")]){
+                withCredentials([UsernamePassword(
+                    credentialsId: "docker_auth", 
+                    passwordVariable: "docker_pass", 
+                    usenameVariable: "docker_user")]
+                    ){
 
                     sh'''
                         docker login -u ${env.docker_user} -p ${env.docker_pass}
