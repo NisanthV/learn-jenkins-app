@@ -60,12 +60,24 @@ pipeline {
 
         stage('Docker'){
 
+            agent{
+                docker{
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+
 
             steps{
 
                 withCredentials([usernamePassword(credentialsId: "docker_auth", passwordVariable: "docker_pass", usernameVariable: "docker_user")]){
 
                     sh'''
+
+                        if ! command -v docker >/dev/null; then
+                          apk add --no-cache docker-cli
+                        fi
+
                         docker login -u $docker_user -p $docker_pass
 
                         docker build -t $docker_user/learn-jenkin .
