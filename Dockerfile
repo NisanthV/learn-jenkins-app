@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-WORKDIR app/learn-jenkin
+WORKDIR /app/learn-jenkin
 
 COPY . .
 
