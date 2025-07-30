@@ -73,11 +73,11 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: "docker_auth", passwordVariable: "docker_pass", usernameVariable: "docker_user")]){
 
                     sh'''
-                        docker login -u ${env.docker_user} -p ${env.docker_pass}
+                        docker login -u $docker_user -p $docker_pass
 
-                        docker build -t ${env.docker_user}/learn-jenkin .
+                        docker build -t $docker_user/learn-jenkin .
 
-                        docker push ${env.docker_user}/learn-jenkin:latest
+                        docker push $docker_user/learn-jenkin:latest
                     '''
 
                 } 
