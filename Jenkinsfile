@@ -14,7 +14,7 @@ pipeline {
             steps {
                 
                 sh'''
-
+                    npi ci
                     npm run build
                 
                 '''
