@@ -14,7 +14,7 @@ pipeline {
             steps {
                 
                 sh'''
-                    npm ci
+                    
                     npm run build
                 
                 '''
@@ -70,14 +70,14 @@ pipeline {
 
             steps{
 
-                withCredentials([UsernamePassword(credentialsId: "docker_auth", passwordVariable: "docker_pass", usenameVariable: "docker_user")]){
+                withCredentials([usernamePassword(credentialsId: "docker_auth", passwordVariable: "docker_pass", usernameVariable: "docker_user")]){
 
                     sh'''
                         docker login -u ${env.docker_user} -p ${env.docker_pass}
 
-                        sh docker build -t ${env.docker_user}/learn-jenkin .
+                        docker build -t ${env.docker_user}/learn-jenkin .
 
-                        sh docker push ${env.docker_user}/learn-jenkin:latest
+                        docker push ${env.docker_user}/learn-jenkin:latest
                     '''
 
                 } 
