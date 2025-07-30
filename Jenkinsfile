@@ -60,15 +60,6 @@ pipeline {
 
         stage('Docker'){
 
-            agent{
-                docker{
-                    image 'node:18-alpine'
-                    args '--user root'
-                    reuseNode true
-                }
-            }
-
-
             steps{
 
                 withCredentials([usernamePassword(credentialsId: "docker_auth", passwordVariable: "docker_pass", usernameVariable: "docker_user")]){
